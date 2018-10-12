@@ -2,11 +2,14 @@ import pygame
 import random as r
 from math import *
 
+# This program requires the pygame module.
+# To install it run "pip3 install pygame" or "pip install pygame" from the command line
+
 # Layout
 FRAMERATE = 160
 FONT_SIZE = 16
-WIDTH = 1000
-HEIGHT = 1000
+WIDTH = 900
+HEIGHT = 900
 INFO = 350
 
 # Vector Magnitudes
