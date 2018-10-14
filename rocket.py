@@ -5,6 +5,16 @@ from math import *
 # This program requires the pygame module.
 # To install it run "pip3 install pygame" or "pip install pygame" from the command line
 
+# TODO
+# make this into a game
+# add hitbox
+# add fuel resource
+# add shield resource
+# add boundary
+# add objects (black holes, meteors, fuel supply)
+# remove gravity options
+# 
+
 # Layout
 FRAMERATE = 160
 FONT_SIZE = 16
