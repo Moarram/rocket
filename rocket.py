@@ -11,9 +11,8 @@ from math import *
 # add fuel resource
 # add shield resource
 # add boundary
-# add objects (black holes, meteors, fuel supply)
+# add objects (black holes, astroids, fuel supply)
 # remove gravity options
-# 
 
 # Layout
 FRAMERATE = 160
@@ -85,11 +84,6 @@ def line(point_1, point_2, color, width=1):
 def vect_add(v_1, v_2):
 	x = cos(v_1.angle)*v_1.magnitude + cos(v_2.angle)*v_2.magnitude
 	y = sin(v_1.angle)*v_1.magnitude + sin(v_2.angle)*v_2.magnitude
-	return Vector(atan2(y, x), sqrt(x*x + y*y))
-
-def vect_sub(v_1, v_2):
-	x = cos(v_1.angle)*v_1.magnitude + cos(v_2.angle)*(-v_2.magnitude)
-	y = sin(v_1.angle)*v_1.magnitude + sin(v_2.angle)*(-v_2.magnitude)
 	return Vector(atan2(y, x), sqrt(x*x + y*y))
 
 def vect_scal(v, scalar):
@@ -326,7 +320,7 @@ def play():
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 1:
 					thrusting = True
-					# pulse = True
+					pulse = True
 				if event.button == 3:
 					stabilize = True
 
@@ -339,9 +333,9 @@ def play():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
 					done = True
-				# if event.key == pygame.K_SPACE:
-				# 	boost = True
-				# 	pulse = True
+				if event.key == pygame.K_SPACE:
+					boost = True
+					pulse = True
 				if event.key == pygame.K_EQUALS:
 					rocket.thrust_vector.magnitude += THRUSTER_ADJUST_STEP
 				if event.key == pygame.K_MINUS:
@@ -363,9 +357,9 @@ def play():
 				if event.key == pygame.K_4:
 					well = not well
 
-			# if event.type == pygame.KEYUP:
-			# 	if event.key == pygame.K_SPACE:
-			# 		boost = False
+			if event.type == pygame.KEYUP:
+				if event.key == pygame.K_SPACE:
+					boost = False
 
 		mouse_pos = pygame.mouse.get_pos()
 
@@ -375,8 +369,8 @@ def play():
 				[("Thruster Power [+/-]: ", FONT_C), ("{:.3f}".format(rocket.thrust_vector.magnitude), THRUST_V_C)],
 				[("Stabilizers [M2]: ", FONT_C), (("ON", TRUE_C) if stabilize else ("OFF", FALSE_C))],
 				[("Stabilizer Power [</>]: ", FONT_C), ("{:.4f}".format(rocket.stabilize_vector.magnitude), STABILIZE_V_C)],
-				# [("Boost [Space]: ", FONT_C), (("ON", TRUE_C) if boost else ("OFF", FALSE_C))],
-				# [("Boost Power: ", FONT_C), ("{:.3f} ".format(rocket.thrust_vector.magnitude*3), THRUST_V_C), ("(Thrust x3)", FONT_C)],
+				[("Boost [Space]: ", FONT_C), (("ON", TRUE_C) if boost else ("OFF", FALSE_C))],
+				[("Boost Power: ", FONT_C), ("{:.3f} ".format(rocket.thrust_vector.magnitude*3), THRUST_V_C), ("(Thrust x3)", FONT_C)],
 				[(" ", FONT_C)],
 				[("General", FONT_C)],
 				[("Vector Mode [1]: ", FONT_C), (("ON", TRUE_C) if detail else ("OFF", FALSE_C))],
